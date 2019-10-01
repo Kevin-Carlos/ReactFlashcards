@@ -1,0 +1,162 @@
+{
+    "version": "1.0",
+    "about": null,
+    "tests": [],
+    "services": {
+        "loadbalancer": null,
+        "vpn": null
+    },
+    "containers": {
+        "frontend": {
+            "name": "flashcard-frontend",
+            "image": {
+                "name": "flashcard-frontend",
+                "source": {
+                    "docker_file": {
+                        "dir": "/client",
+                        "build_file": "/flashcards/client/Dockerfile"
+                    }
+                }
+            },
+            "config": {
+                "network": {
+                    "public": "enable",
+                    "hostname": "flashcard-frontend",
+                    "ports": [
+                        "3000:3000"
+                    ]
+                },
+                "deploy": {
+                    "instances": 1,
+                    "constraints": null,
+                    "shutdown": null,
+                    "restart": null,
+                    "health_check": null
+                },
+                "runtime": {
+                    "workdir": null,
+                    "command": null,
+                    "namespaces": null,
+                    "capabilities": null,
+                    "privileged": false
+                },
+                "volumes": [
+                    {
+                        "local": {
+                            "max_size": "1G"
+                        },
+                        "destination": "./client:/usr/app",
+                        "read_only": false,
+                        "remote_access": {
+                            "enable": false
+                        }
+                    }
+                ]
+        },
+        "backend": {
+            "name": "flashcard-backend",
+            "image": {
+                "name": "flashcard-backend",
+                "source": {
+                    "docker_file": {
+                        "dir": "./api",
+                        "build_file": "./api/Dockerfile"
+                    }
+                }
+            },
+            "config": {
+                "network": {
+                    "public": "disable",
+                    "hostname": "api",
+                    "ports": [
+                        "5000:5000"
+                    ]
+                },
+                "deploy": {
+                    "instances": 1,
+                    "constraints": null,
+                    "shutdown": null,
+                    "restart": null,
+                    "health_check": null
+                },
+                "runtime": {
+                    "workdir": null,
+                    "comannd": null,
+                    "namespaces": null,
+                    "capabilities": null,
+                    "privileged": false
+                },
+                "scaling": null,
+                "resources": null,
+                "integrations": null
+            },
+            "volumes": [
+                {
+                    "local": {
+                        "max_size": "1G"
+                    },
+                    "destination": "./api:/usr/app",
+                    "read_only": false,
+                    "remote_access": {
+                        "enable": false,
+                        "webhook": "",
+                        "password": null
+                    }
+                }
+            ]
+        },
+        "db": {
+            "name": "mongo",
+            "image": {
+                "name": "mongo",
+                "source": {
+                    "docker_hub": {
+                        "target": "mongo"
+                    }
+                }
+            },
+            "config": {
+                "network": {
+                    "public": "disable",
+                    "hostname": "db",
+                    "ports": [
+                        "27017:27017"
+                    ]
+                },
+                "deploy": {
+                    "instances": 1,
+                    "constraints": null,
+                    "shutdown": null,
+                    "restart": null,
+                    "health_check": null
+                },
+                "runtime": {
+                    "workdir": null,
+                    "comannd": null,
+                    "namespaces": null,
+                    "capabilities": null,
+                    "privileged": false
+                },
+                "scaling": null,
+                "resources": null,
+                "integrations": null
+            },
+            "volumes": [
+                {
+                    "local": {
+                        "max_size": "1G"
+                    },
+                    "destination": "./data-node:/data/db",
+                    "read_only": false,
+                    "remote_access": {
+                        "enable": false,
+                        "webhook": "",
+                        "password": null
+                    }
+                }
+            ]
+        }
+    }
+},
+"annotations": {}
+}

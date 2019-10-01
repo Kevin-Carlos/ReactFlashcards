@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  myDB:
+    container_name: myDB
+    image: "mongo"
+    ports:
+      - "27017:27017"
+  api:
+    container_name: flashcards-api
+    build: ./api
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./api:/usr/src/app
+    depends_on:
+      - myDB
+  client:
+    container_name: flashcards-frontend
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/usr/src/app
+    depends_on:
+      - api
