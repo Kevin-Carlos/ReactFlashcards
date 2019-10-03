@@ -6,7 +6,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import fetchCards from '../redux/fetchCards';
+import { fetchCards } from '../redux/actions';
 import {
     getCardsLoading,
     getCardsIndex,
@@ -28,7 +28,7 @@ const Flashcard = ({ index, cards, loading }) => {
 
     return (
         <div>
-            { loading
+            { !loading
                 ?
                 <div className="loading">
                     Loading
@@ -38,6 +38,7 @@ const Flashcard = ({ index, cards, loading }) => {
                 ?
                 <div className="card-rectangle" onClick={() => setSideOfCard(false)}>
                     <div className="card-text">
+                        {console.log("C:", cards[index])}
                         {cards[index] ? cards[index].card_subject : null}
                     </div>
                 </div>
@@ -52,7 +53,7 @@ const Flashcard = ({ index, cards, loading }) => {
     );
 };
 
-const mapStateToProps = function(state) {
+const mapStateToProps = state => {
     return {
         index: getCardsIndex(state),
         cards: getCards(state),
@@ -60,4 +61,11 @@ const mapStateToProps = function(state) {
     }
 }
 
-export default connect(mapStateToProps)(Flashcard);
+const mapDispatchToProps = dispatch => {
+    return { fetchCards: () => dispatch(fetchCards())}
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Flashcard);

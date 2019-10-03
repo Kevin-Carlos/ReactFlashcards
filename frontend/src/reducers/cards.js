@@ -4,9 +4,9 @@
  */
 
 import {
-    FETCH_CARDS_ERROR,
-    FETCH_CARDS_LOADING,
-    FETCH_CARDS_SUCCESS,
+    REQUEST_CARDS_LOADING,
+    REQUEST_CARDS_ERROR,
+    REQUEST_CARDS_SUCCESS,
 } from '../redux/actions';
 
 var initialState = {
@@ -16,30 +16,28 @@ var initialState = {
     error: null,
 }
 
-const Cards = (state = initialState, action) => {
+const cardsReducer = (state = initialState, action) => {
     switch(action.type) {
-        case FETCH_CARDS_LOADING:
+        case REQUEST_CARDS_LOADING:
             return {
-                ...state,
                 loading: true,
-                index: 0,
+                error: false,
             }
 
-        case FETCH_CARDS_SUCCESS:
+        case REQUEST_CARDS_ERROR:
             return {
-                ...state,
-                loading: false,
-                cards: action.payload.cards,
-                index: action.payload.cards.length
+                error: true,
+                loading: true,
             }
 
-        case FETCH_CARDS_ERROR:
-            return {
-                ...state,
+        case REQUEST_CARDS_SUCCESS:
+            return Object.assign({}, state, {
+                type: REQUEST_CARDS_SUCCESS,
                 loading: false,
-                error: action.error,
-                index: 0,
-            }
+                error: false,
+                cards: action.items,
+            })
+
 
         default:
             return state;
@@ -54,4 +52,4 @@ export const getCardsError = state => state.error;
 export const getCardsIndex = state => state.index;
 
 // Export for store
-export default Cards;
+export default cardsReducer;

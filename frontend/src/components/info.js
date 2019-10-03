@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import postData from '../redux/postCards';
+import postCards from '../redux/postCards';
 import { getCardsIndex } from '../reducers/cards';
 // import { getCardsLen } from '../reducers/cards';
 
@@ -10,7 +10,7 @@ const Info = ({ index }) => {
     // Hooks
     const [cards, setCards] = useState({card_subject: '', card_description: ''});
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
 
         //Debugging
@@ -18,7 +18,8 @@ const Info = ({ index }) => {
         console.log(`Card subject: ${cards.card_subject}`);
         console.log(`Card description: ${cards.card_description}`);
 
-        postData(cards);
+        //postCards(cards);
+        await postCards(cards);
 
         // Reset fields
         setCards({card_subject: '', card_description: ''});

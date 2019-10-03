@@ -1,19 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunkMiddleware from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import './styles/index.css';
 import App from './App';
-import Cards from './reducers/cards';
+import cardsReducer from './reducers/cards';
 
 // Enable chrome redux devTools
 // Trying non npm way
-//  /* preloadedState, */
-// window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 const store = createStore(
-    Cards, /* preloadedState, */
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    );
+    cardsReducer, composeWithDevTools(
+    applyMiddleware(thunkMiddleware),
+));
 //console.log('Store:', store.getState())
 render(
     <Provider store={store}>
