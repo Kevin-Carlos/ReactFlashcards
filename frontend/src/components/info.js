@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
+import { postCards } from '../redux/actions';
+import { decrementIndex, incrementIndex } from '../redux/actions';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import postCards from '../redux/postCards';
-import { getCardsIndex } from '../reducers/cards';
-// import { getCardsLen } from '../reducers/cards';
 
 import '../styles/Info.css';
 
-const Info = ({ index }) => {
+const Info = ({ cards, index, incrementIndex, decrementIndex, postCards }) => {
     // Hooks
-    const [cards, setCards] = useState({card_subject: '', card_description: ''});
+    const [newCard, setCards] = useState({card_subject: '', card_description: ''});
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         //Debugging
@@ -19,7 +19,7 @@ const Info = ({ index }) => {
         console.log(`Card description: ${cards.card_description}`);
 
         //postCards(cards);
-        await postCards(cards);
+        postCards(newCard);
 
         // Reset fields
         setCards({card_subject: '', card_description: ''});
@@ -28,21 +28,20 @@ const Info = ({ index }) => {
     return (
         <div className="container">
             <div className="prev-next-button-container">
-                {/* {console.log('Index:', index.index)}
-                {console.log('Length:', DBlength.DBlength)} */}
                 { index < 1 ?
                     <span /> :
                     <i
                         className="arrow left"
                         type="submit"
-                        onClick={console.log("clicking")}
+                        onClick={decrementIndex}
                     />
                 }
-                { index === 10 ?
+                { cards &&
+                    index < cards.length - 1 ?
                     <i
                         className="arrow right"
                         type="submit"
-                        onClick={() => console.log("Clicking")}
+                        onClick={incrementIndex}
                     /> :
                     <span />
                 }
@@ -55,7 +54,7 @@ const Info = ({ index }) => {
                                     type="text"
                                     name="card_subject"
                                     autoFocus
-                                    value={cards.card_subject}
+                                    value={newCard.card_subject}
                                     onChange={ e => {
                                         const val = e.target.value;
                                         setCards(prevState => {
@@ -69,7 +68,7 @@ const Info = ({ index }) => {
                             <input  className="form-group"
                                     type="text"
                                     name="card_description"
-                                    value={cards.card_description}
+                                    value={newCard.card_description}
                                     onChange={ e => {
                                         const val = e.target.value;
                                         setCards(prevState => {
@@ -88,11 +87,12 @@ const Info = ({ index }) => {
     );
 }
 
-const mapStateToProps = function(state) {
+const mapDispatchToProps = (dispatch) => {
     return {
-        index: getCardsIndex(state),
+      incrementIndex: bindActionCreators(incrementIndex, dispatch),
+      decrementIndex: bindActionCreators(decrementIndex, dispatch),
+      postCards: bindActionCreators(postCards, dispatch)
     }
 }
 
-//export default Info;
-export default connect(mapStateToProps)(Info);
+export default connect(null, mapDispatchToProps)(Info);

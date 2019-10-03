@@ -8,11 +8,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchCards } from '../redux/actions';
 import { bindActionCreators } from 'redux';
-import {
-    getCardsLoading,
-    getCardsIndex,
-    getCards,
-} from '../reducers/cards';
+import { getCardsLoading } from '../reducers/cards';
 
 import '../styles/Flashcard.css';
 
@@ -28,37 +24,40 @@ const Flashcard = ({ index, cards, loading, fetchCards }) => {
 
     }, []);
 
+    // useEffect( () => {
+    //     fetchCards();
+    // }, [cards]);
+
     return (
         <div>
-            { !loading
-                ?
-                <div className="loading">
-                    Loading
+          {
+            loading &&
+            <div className="loading">
+              Loading
+            </div>
+          }
+          {
+            cards && !loading && side_of_card &&
+              <div className="card-rectangle" onClick={() => setSideOfCard(false)}>
+                  <div className="card-text">
+                      {cards[index] ? cards[index].card_subject : null}
+                  </div>
+              </div>
+          }
+          {
+            cards && !loading && !side_of_card &&
+            <div className="card-rectangle-back" onClick={() => setSideOfCard(true)}>
+                <div className="card-text">
+                    {cards[index] ? cards[index].card_description : null}
                 </div>
-                :
-                side_of_card
-                ?
-                <div className="card-rectangle" onClick={() => setSideOfCard(false)}>
-                    <div className="card-text">
-                        {console.log("C:", cards[index])}
-                        {cards[index] ? cards[index].card_subject : null}
-                    </div>
-                </div>
-                :
-                <div className="card-rectangle-back" onClick={() => setSideOfCard(true)}>
-                    <div className="card-text">
-                        {cards[index] ? cards[index].card_description : null}
-                    </div>
-                </div>
-            }
+            </div>
+          }
         </div>
     );
 };
 
 const mapStateToProps = state => {
     return {
-        index: getCardsIndex(state),
-        cards: getCards(state),
         loading: getCardsLoading(state),
     }
 }

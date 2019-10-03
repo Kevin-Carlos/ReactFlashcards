@@ -7,6 +7,8 @@ import {
     REQUEST_CARDS_LOADING,
     REQUEST_CARDS_ERROR,
     REQUEST_CARDS_SUCCESS,
+    INCREMENT_INDEX,
+    DECREMENT_INDEX,
 } from '../redux/actions';
 
 var initialState = {
@@ -36,7 +38,20 @@ const cardsReducer = (state = initialState, action) => {
                 loading: false,
                 error: false,
                 cards: action.items,
+                index: 0,
             })
+
+        case DECREMENT_INDEX:
+            return {
+                ...state,
+                index: state.index - 1,
+            }
+
+        case INCREMENT_INDEX:
+            return {
+                ...state,
+                index: state.index + 1,
+            }
 
 
         default:
