@@ -25,15 +25,26 @@ app.use(bodyParser.json());
     * Mongoose is for object modeling
     ! 'data' is the name of my table
 */
-mongoose.connect(url, { useNewUrlParser: true })
-    .then(() => console.log('Database Connected...'))
-    .catch(err => console.log(err));
+// mongoose.connect(url, { useNewUrlParser: true})
+//     .then(() => console.log('Database Connected...'))
+//     .catch(err => console.log(err));
 
 // Run nodemon server
 app.listen(PORT, () => console.log('Backend listening on port:', PORT));
 
+
+const connectWithRetry = function() {
+    return mongoose.connect(url, function(err) {
+        if (err) {
+            console.error('Failed to connect to mongo on startup...retrying', err);
+            setTimeout(connectWithRetry, 5000);
+        }
+    });
+}
+connectWithRetry();
+
 // Endpoints
-cardRoutes.route('/').get(function(req, res) {
+app.get("/", function(req, res) {
     // eslint-disable-next-line array-callback-return
     cards.find(function(err, card) {
         if (err) {
@@ -44,7 +55,7 @@ cardRoutes.route('/').get(function(req, res) {
     });
 });
 
-cardRoutes.route("/find/:id").get(function(req, res) {
+app.get("/find/:id", function(req, res) {
     console.log('Requesting a card by id');
     let id = req.params.id;
     cards.findById(id, function(err, card) {
@@ -52,7 +63,7 @@ cardRoutes.route("/find/:id").get(function(req, res) {
     });
 });
 
-cardRoutes.route('/add').post(function(req, res) {
+app.post('/add', function(req, res) {
     let card = new cards(req.body);
     card.save()
         .then(card => {
@@ -63,7 +74,7 @@ cardRoutes.route('/add').post(function(req, res) {
         })
 });
 
-cardRoutes.route('/update/:id').post(function(req, res) {
+app.post("/update/:id", function(req, res) {
     cards.findById(req.params.id, function(err, card) {
         if (!card)
             res.status(404).send('data not found');
@@ -79,7 +90,7 @@ cardRoutes.route('/update/:id').post(function(req, res) {
     });
 });
 
-cardRoutes.route('/delete/:id').get(function(req, res) {
+app.get("/delete/:id", function(req, res) {
     cards.findByIdAndRemove(req.params.id, function(err, card) {
         if (err)
             res.json(err);
