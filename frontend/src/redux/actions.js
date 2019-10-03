@@ -24,10 +24,9 @@ export const requestCardsSuccess = (flashcards) => {
 
 export const fetchCards = () => {
     console.log("here")
-    return async(dispatch) => {
-        console.log("Fetching");
+    return (dispatch) => {
         dispatch(requestCardsLoading());
-        return fetch("http://localhost:5000")
+        fetch("http://localhost:5000")
             .then(res => res.json())
             .then(json => dispatch(requestCardsSuccess(json)))
     }
