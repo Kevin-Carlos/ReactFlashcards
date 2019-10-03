@@ -7,15 +7,17 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchCards } from '../redux/actions';
+import { bindActionCreators } from 'redux';
 import {
     getCardsLoading,
     getCardsIndex,
     getCards,
 } from '../reducers/cards';
+
 import '../styles/Flashcard.css';
 
 
-const Flashcard = ({ index, cards, loading }) => {
+const Flashcard = ({ index, cards, loading, fetchCards }) => {
 
     // Hooks
     const [side_of_card, setSideOfCard] = useState('true');
@@ -62,7 +64,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-    return { fetchCards: () => dispatch(fetchCards())}
+    return { fetchCards: bindActionCreators(fetchCards, dispatch)}
 }
 
 export default connect(
