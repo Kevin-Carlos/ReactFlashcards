@@ -45,7 +45,7 @@
                         "local": {
                             "max_size": "1G"
                         },
-                        "destination": "./client:/usr/app",
+                        "destination": "./frontend",
                         "read_only": false,
                         "remote_access": {
                             "enable": false
