@@ -7,4 +7,4 @@ COPY package.json ./package.json
 # RUN npm install -g nodemon --silent
 
 EXPOSE 5000
-CMD ["npm", "start"]
+CMD ["npm", "prodStart"]
