@@ -53,7 +53,7 @@
                     "local": {
                         "max_size": "1G"
                     },
-                    "destination": "./api:/usr/src/app",
+                    "destination": "./api",
                     "read_only": false,
                     "remote_access": {
                         "enable": false,
