@@ -23,14 +23,14 @@
                     "public": "enable",
                     "hostname": "flashcard-frontend",
                     "ports": [
-                        "3000:3000"
+                        "80:3000"
                     ]
                 },
                 "deploy": {
                     "instances": 1,
                     "constraints": null,
                     "shutdown": null,
-                    "restart": null,
+                    "restart": "always",
                     "health_check": null
                 },
                 "runtime": {
@@ -76,7 +76,7 @@
                     "instances": 1,
                     "constraints": null,
                     "shutdown": null,
-                    "restart": null,
+                    "restart": "always",
                     "health_check": null
                 },
                 "runtime": {
@@ -127,7 +127,7 @@
                     "instances": 1,
                     "constraints": null,
                     "shutdown": null,
-                    "restart": null,
+                    "restart": "always",
                     "health_check": null
                 },
                 "runtime": {
@@ -146,7 +146,7 @@
                     "local": {
                         "max_size": "1G"
                     },
-                    "destination": "./data-node:/data/db",
+                    "destination": "./api",
                     "read_only": false,
                     "remote_access": {
                         "enable": false,
