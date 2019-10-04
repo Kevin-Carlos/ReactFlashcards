@@ -7,56 +7,6 @@
         "vpn": null
     },
     "containers": {
-        "frontend": {
-            "name": "flashcard-frontend",
-            "image": {
-                "name": "flashcard-frontend",
-                "source": {
-                    "docker_file": {
-                        "dir": "/frontend",
-                        "build_file": "/frontend/Dockerfile"
-                    }
-                }
-            },
-            "config": {
-                "network": {
-                    "public": "enable",
-                    "hostname": "flashcard-frontend",
-                    "ports": [
-                        "80:3000"
-                    ]
-                },
-                "deploy": {
-                    "instances": 1,
-                    "constraints": null,
-                    "shutdown": null,
-                    "restart": {
-                        "condition": "always",
-                        "delay": 5000,
-                        "max_attempts": 10
-                    },
-                    "health_check": null
-                },
-                "runtime": {
-                    "workdir": null,
-                    "command": null,
-                    "namespaces": null,
-                    "capabilities": null,
-                    "privileged": false
-                },
-                "volumes": [
-                    {
-                        "local": {
-                            "max_size": "1G"
-                        },
-                        "destination": "./frontend",
-                        "read_only": false,
-                        "remote_access": {
-                            "enable": false
-                        }
-                    }
-                ]
-        },
         "backend": {
             "name": "flashcard-backend",
             "image": {
@@ -112,6 +62,56 @@
                     }
                 }
             ]
+        },
+        "frontend": {
+            "name": "flashcard-frontend",
+            "image": {
+                "name": "flashcard-frontend",
+                "source": {
+                    "docker_file": {
+                        "dir": "/frontend",
+                        "build_file": "/frontend/Dockerfile"
+                    }
+                }
+            },
+            "config": {
+                "network": {
+                    "public": "enable",
+                    "hostname": "flashcard-frontend",
+                    "ports": [
+                        "80:3000"
+                    ]
+                },
+                "deploy": {
+                    "instances": 1,
+                    "constraints": null,
+                    "shutdown": null,
+                    "restart": {
+                        "condition": "always",
+                        "delay": 5000,
+                        "max_attempts": 10
+                    },
+                    "health_check": null
+                },
+                "runtime": {
+                    "workdir": null,
+                    "command": null,
+                    "namespaces": null,
+                    "capabilities": null,
+                    "privileged": false
+                },
+                "volumes": [
+                    {
+                        "local": {
+                            "max_size": "1G"
+                        },
+                        "destination": "./frontend",
+                        "read_only": false,
+                        "remote_access": {
+                            "enable": false
+                        }
+                    }
+                ]
         },
         "db": {
             "name": "mongo",
