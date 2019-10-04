@@ -13,8 +13,8 @@
                 "name": "flashcard-backend",
                 "source": {
                     "docker_file": {
-                        "dir": "./api",
-                        "build_file": "./api/Dockerfile"
+                        "dir": "/api",
+                        "build_file": "/api/Dockerfile"
                     }
                 }
             },
