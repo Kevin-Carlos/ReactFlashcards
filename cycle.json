@@ -30,7 +30,11 @@
                     "instances": 1,
                     "constraints": null,
                     "shutdown": null,
-                    "restart": "always",
+                    "restart": {
+                        "condition": "always",
+                        "delay": 5000,
+                        "max_attempts": 10
+                    },
                     "health_check": null
                 },
                 "runtime": {
@@ -76,7 +80,11 @@
                     "instances": 1,
                     "constraints": null,
                     "shutdown": null,
-                    "restart": "always",
+                    "restart": {
+                        "condition": "always",
+                        "delay": 5000,
+                        "max_attempts": 10
+                    },
                     "health_check": null
                 },
                 "runtime": {
@@ -127,7 +135,11 @@
                     "instances": 1,
                     "constraints": null,
                     "shutdown": null,
-                    "restart": "always",
+                    "restart": {
+                        "condition": "always",
+                        "delay": 5000,
+                        "max_attempts": 10
+                    },
                     "health_check": null
                 },
                 "runtime": {
