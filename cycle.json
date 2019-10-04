@@ -13,8 +13,8 @@
                 "name": "flashcard-frontend",
                 "source": {
                     "docker_file": {
-                        "dir": "/client",
-                        "build_file": "/flashcards/client/Dockerfile"
+                        "dir": "/frontend",
+                        "build_file": "/frontend/Dockerfile"
                     }
                 }
             },
