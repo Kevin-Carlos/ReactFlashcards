@@ -7,7 +7,7 @@ ADD package.json ./package.json
 # For docker / cycle
 RUN npm install
 
-# RUN npm install -g react-scripts --silent
+RUN npm install -g react-scripts --silent
 
 COPY . /usr/src/app
 
