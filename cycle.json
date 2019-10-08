@@ -7,6 +7,61 @@
         "vpn": null
     },
     "containers": {
+        "db": {
+            "name": "mongo",
+            "image": {
+                "name": "mongo",
+                "source": {
+                    "docker_hub": {
+                        "target": "mongo"
+                    }
+                }
+            },
+            "config": {
+                "network": {
+                    "public": "disable",
+                    "hostname": "db",
+                    "ports": [
+                        "27017:27017"
+                    ]
+                },
+                "deploy": {
+                    "instances": 1,
+                    "constraints": null,
+                    "shutdown": null,
+                    "restart": {
+                        "condition": "always",
+                        "delay": 5000,
+                        "max_attempts": 10
+                    },
+                    "health_check": null
+                },
+                "runtime": {
+                    "workdir": null,
+                    "comannd": null,
+                    "namespaces": null,
+                    "capabilities": null,
+                    "privileged": false
+                },
+                "scaling": null,
+                "resources": null,
+                "integrations": null
+            },
+            "volumes": [
+                {
+                    "local": {
+                        "max_size": "1G"
+                    },
+                    "destination": "/api",
+                    "read_only": false,
+                    "remote_access": {
+                        "enable": false,
+                        "webhook": "",
+                        "password": null
+                    }
+                }
+            ]
+        },
         "backend": {
             "name": "flashcard-backend",
             "image": {
@@ -112,61 +167,6 @@
                         }
                     }
                 ]
-        },
-        "db": {
-            "name": "mongo",
-            "image": {
-                "name": "mongo",
-                "source": {
-                    "docker_hub": {
-                        "target": "mongo"
-                    }
-                }
-            },
-            "config": {
-                "network": {
-                    "public": "disable",
-                    "hostname": "db",
-                    "ports": [
-                        "27017:27017"
-                    ]
-                },
-                "deploy": {
-                    "instances": 1,
-                    "constraints": null,
-                    "shutdown": null,
-                    "restart": {
-                        "condition": "always",
-                        "delay": 5000,
-                        "max_attempts": 10
-                    },
-                    "health_check": null
-                },
-                "runtime": {
-                    "workdir": null,
-                    "comannd": null,
-                    "namespaces": null,
-                    "capabilities": null,
-                    "privileged": false
-                },
-                "scaling": null,
-                "resources": null,
-                "integrations": null
-            },
-            "volumes": [
-                {
-                    "local": {
-                        "max_size": "1G"
-                    },
-                    "destination": "/api",
-                    "read_only": false,
-                    "remote_access": {
-                        "enable": false,
-                        "webhook": "",
-                        "password": null
-                    }
-                }
-            ]
         }
     }
 },
