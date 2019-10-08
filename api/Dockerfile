@@ -6,10 +6,9 @@ COPY package.json ./package.json
 
 # For docker / cycle
 RUN npm install
+RUN npm install -g nodemon --silent
 
 COPY . /usr/src/app
 
-# RUN npm install -g nodemon --silent
-
-EXPOSE 80
+EXPOSE 5000
 CMD ["npm", "start"]

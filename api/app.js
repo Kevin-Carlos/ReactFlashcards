@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 var cors = require('cors');
 // const url = 'mongodb://localhost:27017/data';
 const url = 'mongodb://myDB:27017/data';
-const PORT = 80;
+const PORT = process.env.PORT || 5000;
 
 let cards = require ('./src/models/Cards');
 
@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 //     .catch(err => console.log(err));
 
 // Run nodemon server
-app.listen(PORT, () => console.log('Backend listening on port:', PORT));
+app.listen(PORT, () => console.log('Listening on port:', PORT));
 
 
 const connectWithRetry = function() {

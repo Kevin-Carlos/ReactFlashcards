@@ -78,7 +78,7 @@
                     "public": "enable",
                     "hostname": "api",
                     "ports": [
-                        "3000:80"
+                        "5000:5000"
                     ]
                 },
                 "deploy": {

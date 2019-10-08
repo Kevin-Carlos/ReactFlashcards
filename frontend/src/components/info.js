@@ -15,8 +15,8 @@ const Info = ({ cards, index, incrementIndex, decrementIndex, postCards }) => {
 
         //Debugging
         console.log('Form submitted.');
-        console.log(`Card subject: ${cards.card_subject}`);
-        console.log(`Card description: ${cards.card_description}`);
+        console.log(`Card subject: ${newCard.card_subject}`);
+        console.log(`Card description: ${newCard.card_description}`);
 
         //postCards(cards);
         postCards(newCard);
