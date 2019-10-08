@@ -4,10 +4,10 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY package.json ./package.json
 
-COPY . /usr/src/app
-
 # For docker / cycle
 RUN npm install
+
+COPY . /usr/src/app
 
 # RUN npm install -g nodemon --silent
 
