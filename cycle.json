@@ -79,7 +79,7 @@
                     "public": "enable",
                     "hostname": "flashcard-frontend",
                     "ports": [
-                        "80:3000"
+                        "3000:3000"
                     ]
                 },
                 "deploy": {
