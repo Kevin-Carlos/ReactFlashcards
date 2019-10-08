@@ -61,7 +61,6 @@ const cardsReducer = (state = initialState, action) => {
 
 // Selectors
 export const getCards = state => state.cards;
-// export const getCardsLen = state => state.cards.length;
 export const getCardsLoading = state => state.loading;
 export const getCardsError = state => state.error;
 export const getCardsIndex = state => state.index;
