@@ -47,7 +47,7 @@ export const fetchCards = () => {
 
 export const postCards = (data) => {
     return (dispatch) => {
-        const location = "http://frontend-5d9d0d185176a800012b1e2e.c.5d8fa59da99b6b00011665f3.cycle.io//add";
+        const location = "http://frontend-5d9d0d185176a800012b1e2e.c.5d8fa59da99b6b00011665f3.cycle.io/add";
         const settings = {
             method: 'POST',
             body: JSON.stringify(data),
