@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 var cors = require('cors');
 // const url = 'mongodb://localhost:27017/data';
 const url = 'mongodb://myDB:27017/data';
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 80;
 
 let cards = require ('./src/models/Cards');
 
