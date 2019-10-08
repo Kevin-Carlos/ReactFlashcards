@@ -10,7 +10,7 @@
         "db": {
             "name": "mongo",
             "image": {
-                "name": "mongo",
+                "name": "mongo:latest",
                 "source": {
                     "docker_hub": {
                         "target": "mongo"
