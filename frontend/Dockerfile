@@ -11,5 +11,5 @@ RUN npm install -g react-scripts --silent
 
 COPY . /usr/src/app
 
-EXPOSE 3000
+EXPOSE 80
 CMD ["npm", "start"]
