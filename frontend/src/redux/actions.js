@@ -36,8 +36,9 @@ export const incrementIndex = () => {
     }
 }
 
-const proxyurl = "http://frontend-5d9dae2a5176a800012b82fa.c.5d8fa59da99b6b00011665f3.cycle.io/";
-const url = "backend-5d9dae2a5176a800012b82f6.c.5d8fa59da99b6b00011665f3.cycle.io/";
+// Need url to stay
+const proxyurl = "frontend-5d9db6155176a800012b87ed.c.5d8fa59da99b6b00011665f3.cycle.io";
+const url = "backend-5d9db6155176a800012b87e9.c.5d8fa59da99b6b00011665f3.cycle.io";
 
 export const fetchCards = () => {
     return (dispatch) => {
