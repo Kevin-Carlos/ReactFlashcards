@@ -10,5 +10,5 @@ RUN npm install -g nodemon --silent
 
 COPY . /usr/src/app
 
-EXPOSE 5000
+EXPOSE 3000
 CMD ["npm", "start"]
