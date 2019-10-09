@@ -55,7 +55,7 @@ export const postCards = (data) => {
             method: 'POST',
             body: JSON.stringify(data),
             credentials: 'omit',
-            mode: 'cors',
+            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             }
