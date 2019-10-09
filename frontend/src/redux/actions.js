@@ -49,6 +49,7 @@ export const fetchCards = () => {
     }
 }
 
+// Fix Cors
 export const postCards = (data) => {
     return (dispatch) => {
         const settings = {
