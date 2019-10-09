@@ -62,8 +62,7 @@ export const postCards = (data) => {
             }
         };
         fetch(url + "/add", settings)
-            .then(res => res.json())
-            .then(console.log(res))
+            .then(res => res.json(), console.log(res.json()))
             .then(json => dispatch(fetchCards(json)))
     }
 }
