@@ -19,7 +19,7 @@
             },
             "config": {
                 "network": {
-                    "public": "disable",
+                    "public": "enable",
                     "hostname": "db",
                     "ports": [
                         "27017:27017"
