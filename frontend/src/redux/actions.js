@@ -60,7 +60,7 @@ export const postCards = (data) => {
                 'Content-Type': 'application/json',
             }
         };
-        fetch(url, settings)
+        fetch(url + "/add", settings)
             .then(res => res.json())
             .then(json => dispatch(fetchCards(json)))
     }
