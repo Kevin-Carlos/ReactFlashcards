@@ -36,10 +36,13 @@ export const incrementIndex = () => {
     }
 }
 
+const proxyurl = "http://frontend-5d9d959f5176a800012b7358.c.5d8fa59da99b6b00011665f3.cycle.io/";
+const url = "backend-5d9d1b705176a800012b2790.c.5d8fa59da99b6b00011665f3.cycle.io/";
+
 export const fetchCards = () => {
     return (dispatch) => {
         dispatch(requestCardsLoading());
-        fetch("http://frontend-5d9d959f5176a800012b7358.c.5d8fa59da99b6b00011665f3.cycle.io/backend-5d9d1b705176a800012b2790.c.5d8fa59da99b6b00011665f3.cycle.io")
+        fetch(proxyurl + url)
             .then(res => res.json())
             .then(json => dispatch(requestCardsSuccess(json)))
     }
@@ -47,7 +50,6 @@ export const fetchCards = () => {
 
 export const postCards = (data) => {
     return (dispatch) => {
-        const location = "http://frontend-5d9d959f5176a800012b7358.c.5d8fa59da99b6b00011665f3.cycle.io/backend-5d9d1b705176a800012b2790.c.5d8fa59da99b6b00011665f3.cycle.io/add";
         const settings = {
             method: 'POST',
             body: JSON.stringify(data),
@@ -55,7 +57,7 @@ export const postCards = (data) => {
                 'Content-Type': 'application/json',
             }
         };
-        fetch(`${location}`, settings)
+        fetch(proxy + url, settings)
             .then(res => res.json())
             .then(json => dispatch(fetchCards(json)))
     }
