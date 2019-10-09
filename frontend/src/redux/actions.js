@@ -37,7 +37,7 @@ export const incrementIndex = () => {
 }
 
 // Need url to stay
-const proxyurl = "frontend-5d9db6155176a800012b87ed.c.5d8fa59da99b6b00011665f3.cycle.io";
+// const proxyurl = "frontend-5d9db6155176a800012b87ed.c.5d8fa59da99b6b00011665f3.cycle.io";
 const url = "backend-5d9db6155176a800012b87e9.c.5d8fa59da99b6b00011665f3.cycle.io";
 
 export const fetchCards = () => {
@@ -60,7 +60,7 @@ export const postCards = (data) => {
                 'Content-Type': 'application/json',
             }
         };
-        fetch(proxyurl + url + "/add", settings)
+        fetch("http://" + url + "/add", settings)
             .then(res => res.json())
             .then(json => dispatch(fetchCards(json)))
     }
