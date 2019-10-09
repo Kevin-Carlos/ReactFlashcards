@@ -54,6 +54,8 @@ export const postCards = (data) => {
         const settings = {
             method: 'POST',
             body: JSON.stringify(data),
+            credentials: 'same-origin',
+            mode: 'same-origin',
             headers: {
                 'Content-Type': 'application/json',
             }
