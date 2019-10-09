@@ -15,9 +15,13 @@ const PORT = process.env.PORT || 80;
 
 let cards = require ('./src/models/Cards');
 
+var corsOptions = {
+    origin: "http://frontend-5d9db6155176a800012b87ed.c.5d8fa59da99b6b00011665f3.cycle.io"
+}
+
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors(), bodyParser.json());
+app.options('*', cors())
 // app.use(bodyParser.urlencoded({extended: true}));
 
 /*
@@ -43,7 +47,7 @@ const connectWithRetry = function() {
 connectWithRetry();
 
 // Endpoints
-app.get("/", function(req, res) {
+app.get("/", cors(corsOptions), function(req, res) {
     // eslint-disable-next-line array-callback-return
     cards.find(function(err, card) {
         if (err) {
@@ -54,7 +58,7 @@ app.get("/", function(req, res) {
     });
 });
 
-app.get("/find/:id", function(req, res) {
+app.get("/find/:id", cors(corsOptions), function(req, res) {
     console.log('Requesting a card by id');
     let id = req.params.id;
     cards.findById(id, function(err, card) {
@@ -62,7 +66,7 @@ app.get("/find/:id", function(req, res) {
     });
 });
 
-app.post('/add', function(req, res) {
+app.post('/add', cors(corsOptions), function(req, res) {
     let card = new cards(req.body);
     card.save()
         .then(card => {
@@ -73,7 +77,7 @@ app.post('/add', function(req, res) {
         })
 });
 
-app.post("/update/:id", function(req, res) {
+app.post("/update/:id", cors(corsOptions), function(req, res) {
     cards.findById(req.params.id, function(err, card) {
         if (!card)
             res.status(404).send('data not found');
@@ -89,7 +93,7 @@ app.post("/update/:id", function(req, res) {
     });
 });
 
-app.get("/delete/:id", function(req, res) {
+app.get("/delete/:id", cors(corsOptions), function(req, res) {
     cards.findByIdAndRemove(req.params.id, function(err, card) {
         if (err)
             res.json(err);
