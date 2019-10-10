@@ -51,6 +51,9 @@
 .card-text {
     color: black;
     display: inline-block;
+    width: 500px;
+    height: 300px;
+    line-height: 152px;
 }
 
 .loading {
