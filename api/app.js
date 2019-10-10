@@ -24,7 +24,7 @@ app.use(cors(), bodyParser.json());
     * Mongoose is for object modeling
     ! 'data' is the name of my table
 */
-mongoose.connect(url, {
+mongoose.connect(produrl, {
         useNewUrlParser: true
     })
     .then(() => console.log('Database Connected...'))
