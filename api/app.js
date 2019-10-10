@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 var cors = require('cors');
 // const url = 'mongodb://myDB:27017/data';
-const produrl = 'db-5d9db6155176a800012b87eb.c.5d8fa59da99b6b00011665f3.cycle.io:27017/api';
+const produrl = 'mongodb://db-5d9db6155176a800012b87eb.c.5d8fa59da99b6b00011665f3.cycle.io:27017/api';
 const PORT = process.env.PORT || 80;
 
 let cards = require('./src/models/Cards');
