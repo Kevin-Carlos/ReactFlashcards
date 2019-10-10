@@ -6,7 +6,7 @@
     line-height: 305px;
     border: 1px solid;
     word-wrap: break-word;
-    white-space: initial
+    white-space: initial;
 }
 
 .card-rectangle-back {
@@ -17,7 +17,7 @@
     line-height: 305px;
     border: 1px solid;
     word-wrap: break-word;
-    white-space: initial
+    white-space: initial;
     background-image: linear-gradient(to bottom,
         #ffffff 15%,
         #F94545 16%,
