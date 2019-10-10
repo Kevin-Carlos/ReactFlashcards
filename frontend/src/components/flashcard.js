@@ -24,9 +24,6 @@ const Flashcard = ({ index, cards, loading, fetchCards }) => {
 
     }, []);
 
-    // useEffect( () => {
-    //     fetchCards();
-    // }, [cards]);
 
     return (
         <div>

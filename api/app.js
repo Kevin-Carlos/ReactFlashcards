@@ -17,8 +17,6 @@ let cards = require('./src/models/Cards');
 
 const app = express();
 app.use(cors(), bodyParser.json());
-// app.options('*', cors())
-// app.use(bodyParser.urlencoded({extended: true}));
 
 /*
     * Mongoose is for object modeling
@@ -103,6 +101,3 @@ app.get("/delete/:id", function (req, res) {
             res.json('Successfully Removed.');
     });
 });
-
-// Don't use...breaks stuff
-// app.use('/data', cardRoutes);

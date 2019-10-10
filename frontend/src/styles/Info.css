@@ -30,6 +30,10 @@
     width: 100%;
 }
 
+.button-primary:hover {
+    background-color: #6cb4cc;
+}
+
 .prev-next-button-container {
     text-align: justify;
     width: 100%;
