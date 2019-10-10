@@ -52,6 +52,7 @@ export const fetchCards = () => {
         fetch(url, settings)
             .then(res => res.json())
             .then(json => dispatch(requestCardsSuccess(json)))
+            .catch(err => console.log(err))
     }
 }
 
@@ -68,5 +69,6 @@ export const postCards = (data) => {
         fetch(url + '/add', settings)
             .then(res => res.json())
             .then(json => dispatch(fetchCards(json)))
+            .catch(err => console.log(err))
     }
 }
