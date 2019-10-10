@@ -10,5 +10,5 @@ RUN npm install -g nodemon --silent
 
 COPY . /usr/src/app
 
-EXPOSE 80
+EXPOSE 8080
 CMD ["npm", "start"]
