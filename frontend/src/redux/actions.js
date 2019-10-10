@@ -42,14 +42,20 @@ const url = "http://backend-5d9db6155176a800012b87e9.c.5d8fa59da99b6b00011665f3.
 
 export const fetchCards = () => {
     return (dispatch) => {
+        const settings = {
+            method: 'GET',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
         dispatch(requestCardsLoading());
-        fetch(url)
+        fetch(url, settings)
             .then(res => res.json())
             .then(json => dispatch(requestCardsSuccess(json)))
     }
 }
 
-// Fix Cors
 export const postCards = (data) => {
     return (dispatch) => {
         const settings = {
