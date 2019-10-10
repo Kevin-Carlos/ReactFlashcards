@@ -15,10 +15,6 @@ const PORT = process.env.PORT || 80;
 
 let cards = require('./src/models/Cards');
 
-var corsOptions = {
-    origin: "http://frontend-5d9db6155176a800012b87ed.c.5d8fa59da99b6b00011665f3.cycle.io"
-}
-
 const app = express();
 app.use(cors(), bodyParser.json());
 // app.options('*', cors())
