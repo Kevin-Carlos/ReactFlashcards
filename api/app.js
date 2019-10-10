@@ -21,7 +21,7 @@ var corsOptions = {
 
 const app = express();
 app.use(cors(), bodyParser.json());
-app.options('*', cors())
+// app.options('*', cors())
 // app.use(bodyParser.urlencoded({extended: true}));
 
 /*
@@ -36,29 +36,31 @@ app.options('*', cors())
 app.listen(PORT, () => console.log('Listening on port:', PORT));
 
 
-const connectWithRetry = function() {
-    return mongoose.connect(url, function(err) {
-        if (err) {
-            console.error('Failed to connect to mongo on startup...retrying', err);
-            setTimeout(connectWithRetry, 5000);
-        }
-    });
-}
-connectWithRetry();
+// const connectWithRetry = function() {
+//     return mongoose.connect(url, function(err) {
+//         if (err) {
+//             console.error('Failed to connect to mongo on startup...retrying', err);
+//             setTimeout(connectWithRetry, 5000);
+//         }
+//     });
+// }
+// connectWithRetry();
 
 // Endpoints
-app.get("/", cors(corsOptions), function(req, res) {
+// cors(corsOptions)
+app.get("/", function(req, res) {
     // eslint-disable-next-line array-callback-return
-    cards.find(function(err, card) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(card);
-        }
-    });
+    res.json([])
+    // cards.find(function(err, card) {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         res.json(card);
+    //     }
+    // });
 });
 
-app.get("/find/:id", cors(corsOptions), function(req, res) {
+app.get("/find/:id", function(req, res) {
     console.log('Requesting a card by id');
     let id = req.params.id;
     cards.findById(id, function(err, card) {
@@ -66,7 +68,7 @@ app.get("/find/:id", cors(corsOptions), function(req, res) {
     });
 });
 
-app.post('/add', cors(corsOptions), function(req, res) {
+app.post('/add', function(req, res) {
     let card = new cards(req.body);
     card.save()
         .then(card => {
@@ -77,7 +79,7 @@ app.post('/add', cors(corsOptions), function(req, res) {
         })
 });
 
-app.post("/update/:id", cors(corsOptions), function(req, res) {
+app.post("/update/:id", function(req, res) {
     cards.findById(req.params.id, function(err, card) {
         if (!card)
             res.status(404).send('data not found');
@@ -93,7 +95,7 @@ app.post("/update/:id", cors(corsOptions), function(req, res) {
     });
 });
 
-app.get("/delete/:id", cors(corsOptions), function(req, res) {
+app.get("/delete/:id", function(req, res) {
     cards.findByIdAndRemove(req.params.id, function(err, card) {
         if (err)
             res.json(err);

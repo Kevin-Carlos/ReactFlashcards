@@ -44,7 +44,7 @@ export const fetchCards = () => {
     return (dispatch) => {
         const settings = {
             method: 'GET',
-            mode: 'no-cors',
+            // mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -61,7 +61,7 @@ export const postCards = (data) => {
         const settings = {
             method: 'POST',
             body: JSON.stringify(data),
-            mode: 'no-cors',
+            // mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
             }
