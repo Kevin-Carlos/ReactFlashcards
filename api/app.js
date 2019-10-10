@@ -24,11 +24,11 @@ app.use(cors(), bodyParser.json());
     * Mongoose is for object modeling
     ! 'data' is the name of my table
 */
-mongoose.connect(produrl, {
-        useNewUrlParser: true
-    })
-    .then(() => console.log('Database Connected...'))
-    .catch(err => console.log(err));
+// mongoose.connect(produrl, {
+//         useNewUrlParser: true
+//     })
+//     .then(() => console.log('Database Connected...'))
+//     .catch(err => console.log(err));
 
 // Run nodemon server
 app.listen(PORT, () => console.log('Listening on port:', PORT));
@@ -48,14 +48,14 @@ connectWithRetry();
 // cors(corsOptions)
 app.get("/", function (req, res) {
     // eslint-disable-next-line array-callback-return
-    res.json([])
-    // cards.find(function(err, card) {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         res.json(card);
-    //     }
-    // });
+    // res.json([])
+    cards.find(function (err, card) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(card);
+        }
+    });
 });
 
 app.get("/find/:id", function (req, res) {
